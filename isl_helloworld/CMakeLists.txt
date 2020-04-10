@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project (isl-example CXX C)
+project(isl-example CXX C)
 
 set(TARGET_NAME isl-example)
 

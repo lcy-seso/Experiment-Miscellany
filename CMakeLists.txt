@@ -12,3 +12,4 @@ message(STATUS "C compiler: ${CMAKE_C_COMPILER}, version: "
 include(third_party)
 
 add_subdirectory(hello_world)
+add_subdirectory(clang-test)
