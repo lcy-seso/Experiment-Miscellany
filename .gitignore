@@ -1,0 +1,10 @@
+*.tgz
+*.gz
+*.pyc
+.ipynb_checkpoints/
+__pycache__/
+.vs/
+.data/
+venv/
+.idea/
+.checkpoints/
