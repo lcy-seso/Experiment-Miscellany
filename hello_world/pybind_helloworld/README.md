@@ -2,9 +2,9 @@
 
 1. install python dependences.
 
-  ```
-  pip3 install pytest setuptools wheel
-  ```
+    ```bash
+    pip3 install pytest setuptools wheel
+    ```
 
 1. build the outer directory which automatically downloads pybind from github.
 
@@ -17,24 +17,25 @@
     ```
 # Build
 
-```bash
-python3 setup.py build
-```
 
-or build the wheel.
+1. build the dynamic-link library
+    ```bash
+    python3 setup.py build
+    ```
 
-```base
-python3 setup.py bdist_wheel
-```
+1. or build the wheel.
+
+    ```base
+    python3 setup.py bdist_wheel
+    ```
 
 # Test the binding
 
-Suppose you do not build the wheel, but only the dynamic-link library:
+Suppose you do not build the wheel, but only build the dynamic-link library, run below commands to check the binding.
 
 ```bash
 cd build/lib.linux-x86_64-3.6
 ln -s pybind_test.cpython-36m-x86_64-linux-gnu.so pybind_test.so
-
 ```
 
 Test in Python REPL:

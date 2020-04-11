@@ -4,6 +4,9 @@ project(isl-example CXX C)
 
 set(TARGET_NAME isl-example)
 
+set(ISL_INSTALL_DIR
+    ${CMAKE_BINARY_DIR}/../../../build/third_party/isl/src/extern_isl-install)
+
 include_directories(${ISL_INSTALL_DIR}/include)
 link_directories(${ISL_INSTALL_DIR}/lib)
 
