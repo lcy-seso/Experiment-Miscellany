@@ -12,5 +12,5 @@ link_directories(${ISL_INSTALL_DIR}/lib)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-add_executable(${TARGET_NAME} main.c)
+add_executable(${TARGET_NAME} main.cpp)
 target_link_libraries(${TARGET_NAME} -lisl)
