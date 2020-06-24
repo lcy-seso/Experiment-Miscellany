@@ -3,6 +3,7 @@ include(ExternalProject)
 set(ISL_PREFIX_DIR ${THIRD_PARTY_PATH}/isl)
 set(ISL_SOURCE_DIR ${THIRD_PARTY_PATH}/isl/src/extern_isl)
 set(ISL_INSTALL_DIR ${THIRD_PARTY_PATH}/isl/src/extern_isl-install)
+set(ISL_LIBRARIES ${ISL_INSTALL_DIR}/lib)
 set(ISL_REPOSITORY https://github.com/Meinersbur/isl.git)
 set(ISL_TAG isl-0.22)
 
@@ -15,8 +16,8 @@ cache_third_party(
   DIR
   ISL_SOURCE_DIR)
 
-set(ISL_INCLUDE_DIR ${ISL_SOURCE_DIR}/include)
-include_directories(${ISL_INCLUDE_DIR})
+include_directories(${ISL_INSTALL_DIR}/include)
+link_directories(${ISL_INSTALL_DIR}/lib)
 
 ExternalProject_Add(
   extern_isl
@@ -24,14 +25,10 @@ ExternalProject_Add(
   ${SHALLOW_CLONE}
   "${ISL_DOWNLOAD_CMD}"
   PREFIX ${ISL_PREFIX_DIR}
-  SOURCE_DIR ${ISL_SOURCE_DIR}
   UPDATE_COMMAND ""
-  COMMAND ${ISL_SOURCE_DIR}/./autogen.sh
-  CONFIGURE_COMMAND ${ISL_SOURCE_DIR}/./configure --prefix=${ISL_INSTALL_DIR}
-  BUILD_COMMAND make -j $(nproc)
-  INSTALL_COMMAND make install
-  TEST_COMMAND "")
-
-add_library(isl INTERFACE)
-
-add_dependencies(isl extern_isl)
+  BUILD_IN_SOURCE 1
+  SOURCE_DIR ${ISL_SOURCE_DIR}
+  CONFIGURE_COMMAND ./autogen.sh
+  COMMAND ./configure --prefix=${ISL_INSTALL_DIR}
+  BUILD_COMMAND $(MAKE) --silent -j $(nproc)
+  INSTALL_COMMAND $(MAKE) install)
